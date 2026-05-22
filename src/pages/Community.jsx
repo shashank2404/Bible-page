@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { Users, Heart, MessageSquare, ShieldCheck, Flame, Globe, Video, Calendar, ArrowRight, Mic, Star, Zap, Layout } from "lucide-react";
 
 const SectionHeading = ({ subtitle, title, centered = true }) => (
@@ -8,19 +9,44 @@ const SectionHeading = ({ subtitle, title, centered = true }) => (
   </div>
 );
 
-const FeatureCard = ({ title, items, icon: Icon }) => (
-  <motion.div whileHover={{ y: -5 }} className="glass-card p-8 rounded-3xl h-full border-white/5 hover:border-[#d4af3730] transition-all">
-    <div className="w-12 h-12 rounded-2xl bg-[#d4af3715] flex items-center justify-center text-[#d4af37] mb-6"><Icon size={24} /></div>
-    <h3 className="text-xl font-serif font-bold text-white mb-6 tracking-tight">{title}</h3>
-    <ul className="space-y-3">
-      {items.map((item, i) => (
-        <li key={i} className="flex items-center gap-3 text-slate-400 text-sm">
-          <div className="w-1 h-1 rounded-full bg-[#d4af37]"></div><span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  </motion.div>
-);
+const FeatureCard = ({ title, items, icon: Icon, to }) => {
+  const CardContent = (
+    <div className="flex flex-col h-full justify-between">
+      <div>
+        <div className="w-12 h-12 rounded-2xl bg-[#d4af3715] flex items-center justify-center text-[#d4af37] mb-6"><Icon size={24} /></div>
+        <h3 className="text-xl font-serif font-bold text-white mb-6 tracking-tight">{title}</h3>
+        <ul className="space-y-3">
+          {items.map((item, i) => (
+            <li key={i} className="flex items-center gap-3 text-slate-400 text-sm">
+              <div className="w-1 h-1 rounded-full bg-[#d4af37]"></div><span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {to && (
+        <div className="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#d4af37] group-hover:underline">
+          Enter Room <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
+        </div>
+      )}
+    </div>
+  );
+
+  if (to) {
+    return (
+      <Link to={to} className="block h-full group">
+        <motion.div whileHover={{ y: -5 }} className="glass-card p-8 rounded-3xl h-full border-white/5 hover:border-[#d4af3730] transition-all cursor-pointer">
+          {CardContent}
+        </motion.div>
+      </Link>
+    );
+  }
+
+  return (
+    <motion.div whileHover={{ y: -5 }} className="glass-card p-8 rounded-3xl h-full border-white/5 hover:border-[#d4af3730] transition-all">
+      {CardContent}
+    </motion.div>
+  );
+};
 
 export default function Community() {
   return (
@@ -41,7 +67,7 @@ export default function Community() {
         <div className="max-w-7xl mx-auto">
           <SectionHeading subtitle="Engagement" title="Ways to Connect & Grow" />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard title="Prayer Rooms" icon={Heart} items={["Healing & Restoration","Family & Home","Exams & Students","Anxiety & Inner Peace","Spiritual Growth"]} />
+            <FeatureCard title="Prayer Rooms" icon={Heart} items={["Healing & Restoration","Family & Home","Exams & Students","Anxiety & Inner Peace","Spiritual Growth"]} to="/prayer-war-room" />
             <FeatureCard title="Faith Discussions" icon={MessageSquare} items={["Verse Analysis","Christian Lifestyle","Theology Conversations","Daily Reflections","End-times Biblical Views"]} />
             <FeatureCard title="Testimony Sharing" icon={Flame} items={["Life-changing Stories","Miracles in Action","Answered Prayers","Faith Journeys","Overcoming Trials"]} />
           </div>

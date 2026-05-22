@@ -13,6 +13,7 @@ import DownloadPage from "./pages/Download";
 import PlanDetail from "./pages/PlanDetail";
 import DevotionalDetail from "./pages/DevotionalDetail";
 import SignIn from "./pages/SignIn";
+import PrayerWarRoom from "./pages/Prayerwarroom";
 
 const LogoIcon = () => (
   <div className="w-10 h-10 bg-gradient-to-tr from-[#d4af37] to-[#f5d17a] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.3)] relative">
@@ -154,7 +155,7 @@ const LandingPage = () => (
     <section className="py-24 relative z-10 border-t border-white/5 bg-white/[0.02]">
       <div className="max-w-7xl mx-auto px-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          {[{label:"Daily Verse Engagement",val:"High"},{label:"Bible Versions",val:"Many"},{label:"Questions Answered",val:"Insights"},{label:"Prayer Circles",val:"Community"}].map((stat, i) => (
+          {[{ label: "Daily Verse Engagement", val: "High" }, { label: "Bible Versions", val: "Many" }, { label: "Questions Answered", val: "Insights" }, { label: "Prayer Circles", val: "Community" }].map((stat, i) => (
             <div key={i} className="flex flex-col gap-2">
               <p className="text-4xl font-serif font-bold text-white tracking-tight">{stat.val}</p>
               <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">{stat.label}</p>
@@ -171,7 +172,7 @@ const LandingPage = () => (
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white">Spiritual Tools for Your Journey</h2>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-          {[{icon:BookOpen,title:"Daily Bible Reading",desc:"Access scripture anytime with a clean reading experience.",to:"/bible"},{icon:Heart,title:"Daily Devotionals",desc:"Stay spiritually motivated with curated devotionals.",to:"/devotionals"},{icon:Globe,title:"Multi-language Support",desc:"Read scripture in multiple languages including Hindi.",to:"/bible"},{icon:Bookmark,title:"Verse Bookmarking",desc:"Save your favorite scriptures and revisit them anytime.",to:"/bible"},{icon:Calendar,title:"Reading Plans",desc:"Build a consistent relationship with God through guided plans.",to:"/reading-plans"}].map((f, i) => (
+          {[{ icon: BookOpen, title: "Daily Bible Reading", desc: "Access scripture anytime with a clean reading experience.", to: "/bible" }, { icon: Heart, title: "Daily Devotionals", desc: "Stay spiritually motivated with curated devotionals.", to: "/devotionals" }, { icon: Globe, title: "Multi-language Support", desc: "Read scripture in multiple languages including Hindi.", to: "/bible" }, { icon: Bookmark, title: "Verse Bookmarking", desc: "Save your favorite scriptures and revisit them anytime.", to: "/bible" }, { icon: Calendar, title: "Reading Plans", desc: "Build a consistent relationship with God through guided plans.", to: "/reading-plans" }].map((f, i) => (
             <Link key={i} to={f.to} className="block">
               <motion.div whileHover={{ y: -10 }} className="glass-card p-8 rounded-3xl group">
                 <div className="w-14 h-14 rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-400 mb-6 group-hover:bg-[#d4af37] group-hover:text-white transition-all duration-300"><f.icon size={28} /></div>
@@ -300,6 +301,7 @@ export default function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/download" element={<DownloadPage />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/prayer-war-room" element={<PrayerWarRoom />} />
         </Routes>
         <Footer />
       </div>
