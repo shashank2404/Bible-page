@@ -12,6 +12,7 @@ import Support from "./pages/Support";
 import DownloadPage from "./pages/Download";
 import PlanDetail from "./pages/PlanDetail";
 import DevotionalDetail from "./pages/DevotionalDetail";
+import SignIn from "./pages/SignIn";
 
 const LogoIcon = () => (
   <div className="w-10 h-10 bg-gradient-to-tr from-[#d4af37] to-[#f5d17a] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.3)] relative">
@@ -43,7 +44,7 @@ const Navbar = () => {
           <Link to="/reading-plans" className="hover:text-[#d4af37] transition-colors">Reading Plans</Link>
           <Link to="/devotionals" className="hover:text-[#d4af37] transition-colors">Devotionals</Link>
           <Link to="/community" className="hover:text-[#d4af37] transition-colors">Community</Link>
-          <button className="px-6 py-2.5 bg-white/10 hover:bg-white/15 text-white rounded-full border border-white/10 transition-all">Sign In</button>
+          <Link to="/signin" className="px-6 py-2.5 bg-white/10 hover:bg-white/15 text-white rounded-full border border-white/10 transition-all text-center">Sign In</Link>
         </div>
         <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -57,6 +58,7 @@ const Navbar = () => {
               <Link to="/devotionals" onClick={() => setIsMobileMenuOpen(false)}>Devotionals</Link>
               <Link to="/community" onClick={() => setIsMobileMenuOpen(false)}>Community</Link>
               <Link to="/bible" onClick={() => setIsMobileMenuOpen(false)}>Bible</Link>
+              <Link to="/signin" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d4af37] transition-colors">Sign In</Link>
             </div>
           </motion.div>
         )}
@@ -297,6 +299,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/support" element={<Support />} />
           <Route path="/download" element={<DownloadPage />} />
+          <Route path="/signin" element={<SignIn />} />
         </Routes>
         <Footer />
       </div>
