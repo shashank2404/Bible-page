@@ -202,7 +202,7 @@ const CATEGORIES = [
 export default function ReadingPlans({ onDownload, onArticle, onCategory }) {
   const navigate = useNavigate();
   const handleDownload = (plan) => { if (onDownload) onDownload(plan); else navigate("/download"); };
-  const handleArticle  = (id)   => { if (onArticle) onArticle(id); else navigate(`/reading-plans/article/${id}`); };
+  const handleArticle  = (id)   => { if (onArticle) onArticle(id); else navigate(`/reading-plans/${id}`); };
   const handleCategory = (id)   => { if (onCategory) onCategory(id); };
 
   return (
