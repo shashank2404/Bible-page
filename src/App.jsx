@@ -14,7 +14,7 @@ import PlanDetail from "./pages/PlanDetail";
 import DevotionalDetail from "./pages/DevotionalDetail";
 import SignIn from "./pages/SignIn";
 import PrayerWarRoom from "./pages/Prayerwarroom";
-import ArticleDetailWrapper from "./pages/ArticleDetailWrapper";
+import Articledetail from "./pages/Articledetail";
 
 const LogoIcon = () => (
   <div className="w-10 h-10 bg-gradient-to-tr from-[#d4af37] to-[#f5d17a] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.3)] relative">
@@ -295,7 +295,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/reading-plans" element={<ReadingPlans />} />
-          <Route path="/reading-plans/:id" element={<ArticleDetailWrapper />} />
+          <Route path="/reading-plans/:id" element={<Articledetail />} />
           <Route path="/devotionals" element={<Devotionals />} />
           <Route path="/devotionals/:id" element={<DevotionalDetail />} />
           <Route path="/community" element={<Community />} />
