@@ -163,7 +163,7 @@ export default function SignIn() {
         setSocialStep(`Contacting ${provider} authentication servers...`);
 
         // Replace the setTimeout in handleSubmit with something like:
-        const res = await fetch("/api/auth/signin", {
+        const res = await fetch(`${API_BASE}/api/auth/signin`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
