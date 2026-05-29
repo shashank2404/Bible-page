@@ -12,3 +12,10 @@
   RewriteCond %{REQUEST_FILENAME} !-l
   RewriteRule . /index.html [L]
 </IfModule>
+
+<IfModule mod_headers.c>
+  # Fix for Google OAuth: allow the popup to communicate back with the window
+  Header set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  # Optional: Also ensure Cross-Origin-Embedder-Policy isn't too strict if you embed videos/iframes
+  # Header set Cross-Origin-Embedder-Policy "unsafe-none"
+</IfModule>
