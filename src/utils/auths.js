@@ -1,5 +1,6 @@
-// Empty string = relative paths; works with Vite proxy in dev and same-origin in production
-export const API_BASE = "";
+export const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" 
+  ? "http://localhost:5000" 
+  : "https://thebibleglory.com";
 
 export const saveToken = (token, name) => {
   localStorage.setItem("token", token);

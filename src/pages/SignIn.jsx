@@ -203,6 +203,8 @@ export default function SignIn() {
                         saveToken(regData.token, regData.name || "Believer");
                         setSuccess("Account created successfully with Google!");
                         setTimeout(() => navigate("/"), 1500);
+                    } else {
+                        setError(regData.error || regData.message || "Failed to create account with Google.");
                     }
                 } else if (data.token) {
                     // Existing user
@@ -210,9 +212,10 @@ export default function SignIn() {
                     setSuccess("Signed in successfully with Google!");
                     setTimeout(() => navigate("/"), 1500);
                 } else {
-                    setError(data.error || "Google sign-in failed.");
+                    setError(data.error || data.message || "Google sign-in failed.");
                 }
             } catch (err) {
+                console.error("Google Auth Error:", err);
                 setError("Network error. Please try again.");
             } finally {
                 setIsLoading(false);
