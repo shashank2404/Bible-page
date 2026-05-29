@@ -15,6 +15,7 @@ import DevotionalDetail from "./pages/DevotionalDetail";
 import SignIn from "./pages/SignIn";
 import PrayerWarRoom from "./pages/Prayerwarroom";
 import ArticleDetail from "./pages/Articledetail";
+import { isLoggedIn, getUserName, logout } from "./utils/auths";
 
 const LogoIcon = () => (
   <div className="w-10 h-10 bg-gradient-to-tr from-[#d4af37] to-[#f5d17a] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.3)] relative">
@@ -28,6 +29,13 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const [userLogged, setUserLogged] = useState(isLoggedIn());
+  const [userName, setUserName] = useState(getUserName());
+
+  useEffect(() => {
+    setUserLogged(isLoggedIn());
+    setUserName(getUserName());
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -47,7 +55,14 @@ const Navbar = () => {
           <Link to="/devotionals" className="hover:text-[#d4af37] transition-colors">Devotionals</Link>
           <Link to="/community" className="hover:text-[#d4af37] transition-colors">Community</Link>
           <Link to="/prayer-war-room" className="hover:text-[#d4af37] transition-colors">Prayer War Room</Link>
-          <Link to="/signin" className="px-6 py-2.5 bg-white/10 hover:bg-white/15 text-white rounded-full border border-white/10 transition-all text-center">Sign In</Link>
+          {userLogged ? (
+            <div className="flex items-center gap-4">
+              <span className="font-medium text-[#d4af37]">Hi, {userName?.split(' ')[0] || "User"}</span>
+              <button onClick={() => { logout(); setUserLogged(false); }} className="px-4 py-2 bg-white/5 hover:bg-white/10 text-white rounded-full border border-white/10 transition-all text-center text-xs">Logout</button>
+            </div>
+          ) : (
+            <Link to="/signin" className="px-6 py-2.5 bg-white/10 hover:bg-white/15 text-white rounded-full border border-white/10 transition-all text-center">Sign In</Link>
+          )}
         </div>
         <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -62,7 +77,14 @@ const Navbar = () => {
               <Link to="/community" onClick={() => setIsMobileMenuOpen(false)}>Community</Link>
               <Link to="/bible" onClick={() => setIsMobileMenuOpen(false)}>Bible</Link>
               <Link to="/prayer-war-room" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d4af37] transition-colors">Prayer War Room</Link>
-              <Link to="/signin" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d4af37] transition-colors">Sign In</Link>
+              {userLogged ? (
+                <div className="flex flex-col gap-4 mt-2 border-t border-white/10 pt-4">
+                  <span className="font-medium text-[#d4af37]">Hi, {userName || "User"}</span>
+                  <button onClick={() => { logout(); setUserLogged(false); setIsMobileMenuOpen(false); }} className="text-left text-lg text-slate-300 hover:text-white transition-colors">Logout</button>
+                </div>
+              ) : (
+                <Link to="/signin" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d4af37] transition-colors">Sign In</Link>
+              )}
             </div>
           </motion.div>
         )}
