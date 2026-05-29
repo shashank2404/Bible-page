@@ -53,6 +53,21 @@ export default function SignIn() {
 
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const urlToken = params.get("token");
+        const urlError = params.get("error");
+
+        if (urlToken) {
+            // Save token and a generic name since backend didn't pass name in URL
+            saveToken(urlToken, "Believer");
+            setSuccess("Signed in successfully!");
+            setTimeout(() => navigate("/"), 1500);
+        } else if (urlError) {
+            setError(`Authentication failed: ${urlError}`);
+        }
+    }, [navigate]);
+
     /**
      * Calculate password strength score (0-5)
      * Returns strength label, color class, and bar color
@@ -159,18 +174,22 @@ export default function SignIn() {
         setSocialProvider(provider);
         setError(null);
 
+        if (provider === "Facebook") {
+            setSocialStep(`Redirecting to Facebook...`);
+            window.location.href = `${API_BASE}/api/auth/facebook`;
+            return;
+        }
+
         // Multi-stage verification telemetry for visual realism and depth
         setSocialStep(`Contacting ${provider} authentication servers...`);
 
-        // Replace the setTimeout in handleSubmit with something like:
-        const res = await fetch(`${API_BASE}/api/auth/signin`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-        });
-        const data = await res.json();
-        if (!res.ok) setError(data.message);
-        else navigate("/");
+        // Mock failure for other providers if not implemented
+        setTimeout(() => {
+            setError(`${provider} login is currently unavailable.`);
+            setIsLoading(false);
+            setSocialProvider(null);
+            setSocialStep("");
+        }, 2000);
     };
 
     // Component ke andar yeh function add karo
