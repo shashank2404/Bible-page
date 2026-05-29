@@ -6,7 +6,13 @@
   RewriteCond %{HTTP_HOST} !^www\. [NC]
   RewriteRule ^(.*)$ https://www.thebibleglory.com/$1 [R=301,L]
 
+  # IMPORTANT: Send all /api/ requests to the Node.js backend running on port 5000
+  RewriteCond %{REQUEST_URI} ^/api/ [NC]
+  RewriteRule ^(.*)$ http://127.0.0.1:5000/$1 [P,L]
+
+  # Let React handle routing for everything else
   RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_URI} !^/api/ [NC]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
