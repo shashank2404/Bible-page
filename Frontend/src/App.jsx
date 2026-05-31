@@ -16,6 +16,7 @@ import SignIn from "./pages/SignIn";
 import PrayerWarRoom from "./pages/Prayerwarroom";
 import ArticleDetail from "./pages/Articledetail";
 import { isLoggedIn, getUserName, logout } from "./utils/auths";
+import SocialSidebar from "./components/SocialSidebar";
 
 const LogoIcon = () => (
   <div className="w-10 h-10 bg-gradient-to-tr from-[#d4af37] to-[#f5d17a] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(212,175,55,0.3)] relative">
@@ -314,6 +315,7 @@ export default function App() {
       <ScrollToTop />
       <div className="relative overflow-x-hidden">
         <Navbar />
+        <SocialSidebar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/reading-plans" element={<ReadingPlans />} />
