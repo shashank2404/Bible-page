@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const socials = [
   {
     name: "Instagram",
-    url: "https://instagram.com/YOUR_USERNAME",
+    url: "https://www.instagram.com/thebibleglory?igsh=bmFwODc0NmV5emd6",
     color: "#E1306C",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -16,7 +16,7 @@ const socials = [
   },
   {
     name: "Facebook",
-    url: "https://facebook.com/YOUR_USERNAME",
+    url: "https://www.facebook.com/profile.php?id=61590149747098",
     color: "#1877F2",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
