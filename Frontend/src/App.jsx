@@ -258,15 +258,10 @@ const LandingPage = () => (
 const Footer = () => (
   <footer className="py-20 border-t border-white/5">
     <div className="max-w-7xl mx-auto px-12">
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-        <div className="lg:col-span-1">
+      <div className="grid md:grid-cols-3 gap-12 mb-16">
+        <div>
           <div className="flex items-center gap-2 mb-8"><LogoIcon /><span className="font-semibold text-xl text-white">The Bible Glory</span></div>
           <p className="text-slate-500 text-sm leading-relaxed mb-8">Dedicated to helping believers worldwide experience the Word of God through modern technology and community.</p>
-          <div className="flex gap-4">
-            {[Globe, Star, MessageSquare].map((Icon, i) => (
-              <div key={i} className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-[#d4af37] cursor-pointer transition-colors"><Icon size={18} /></div>
-            ))}
-          </div>
         </div>
         <div>
           <h5 className="text-white font-bold mb-8 uppercase tracking-widest text-[10px]">Resources</h5>
@@ -282,14 +277,6 @@ const Footer = () => (
             <li><Link to="/community" className="hover:text-[#d4af37] transition-colors">Community</Link></li>
             <li><Link to="/support" className="hover:text-[#d4af37] transition-colors">Support</Link></li>
           </ul>
-        </div>
-        <div>
-          <h5 className="text-white font-bold mb-8 uppercase tracking-widest text-[10px]">Newsletter</h5>
-          <p className="text-sm text-slate-500 mb-6 italic">The Word of God in your inbox daily.</p>
-          <div className="relative">
-            <input type="email" placeholder="name@email.com" className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-6 text-sm focus:outline-none focus:border-[#d4af37] transition-colors text-white" />
-            <button className="absolute right-2 top-2 bottom-2 px-4 bg-[#d4af37] text-black rounded-lg font-bold text-[10px] uppercase">Subscribe</button>
-          </div>
         </div>
       </div>
       <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
