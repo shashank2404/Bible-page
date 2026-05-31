@@ -26,7 +26,7 @@ const socials = [
   },
   {
     name: "X (Twitter)",
-    url: "https://x.com/YOUR_USERNAME",
+    url: "https://x.com/TheBibleGlory",
     color: "#000000",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
